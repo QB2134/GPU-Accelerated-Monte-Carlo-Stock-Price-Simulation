@@ -1,73 +1,73 @@
 🧠 GPU-Accelerated Monte Carlo Stock Price Simulation
 
-This project implements a Monte Carlo simulation of stock-price dynamics under Geometric Brownian Motion (GBM) using CuPy (GPU) for large-scale stochastic modeling and option pricing.
-It visualizes sample price paths, the empirical terminal distribution, and overlays the theoretical log-normal PDF for validation.
+This project runs a Monte Carlo simulation of stock-price dynamics under Geometric Brownian Motion (GBM) using CuPy for GPU acceleration.
+It estimates the fair value of a European call option, visualizes sample paths, and compares the simulated terminal-price distribution to the theoretical log-normal curve.
 
-📊 Key Results
-Metric	Value
-Monte Carlo Call Option Price	$ 6.04 ( K = 110 )
-Simulations	1,000,000 paths
+🔢 Run Summary
+Metric	Result
+Monte Carlo Call Option Price	$ 6.04 (K = 110)
+Simulations	1 000 000 paths
 Steps	252 (daily over 1 year)
-GPU Runtime	≈ 1.13 seconds
-⚙️ Model Summary
+GPU Runtime	≈ 1.13 seconds (CuPy on CUDA)
+⚙️ Model Setup
 
-The stock price evolves as
+The simulation assumes:
 
-St+Δt​=St​e(r−21​σ2)Δt+σΔt
-​Zt​,Zt​∼N(0,1)
+Risk-neutral drift = r – 0.5 σ²
 
-under the risk-neutral measure where 
-𝑟
-r replaces the expected return μ.
-The call-option payoff is
+Random shocks ∼ Normal(0, 1)
 
-max(ST​−K,0), C0​=e−rTE[max(ST​−K,0)].
+Payoff = max(S_T – K, 0)
 
+Discounting = exp(–r T) × E[payoff]
 
-Parameters used in this experiment:
+Parameters
 
 S0 = 100       # initial stock price
-K  = 110       # strike
+K  = 110       # strike price
 r  = 0.05      # risk-free rate
 sigma = 0.2    # volatility
 T  = 1         # years
 steps = 252    # daily steps
-N  = 1_000_000 # GPU simulations
+N  = 1_000_000 # number of simulations
 
-📈 Visualizations
+📈 Visual Outputs
 
 1️⃣ Sample Simulated Stock Price Paths
 
+
 2️⃣ Empirical Distribution of Final Prices
+
 
 3️⃣ Simulated vs Theoretical Log-Normal PDF
 
-The red curve closely follows the simulated histogram, confirming that the model correctly reproduces the log-normal distribution implied by GBM.
+
+The red curve closely follows the simulated histogram, confirming that the model reproduces the log-normal distribution implied by GBM.
 
 💻 Tech Stack
 
 Python 3.10 +
 
-CuPy – GPU-accelerated array math
+CuPy – GPU array computations
+
+NumPy / SciPy – mathematical utilities
 
 Matplotlib – visualization
-
-SciPy – log-normal PDF for theoretical fit
 
 Install dependencies:
 
 pip install cupy-cuda12x matplotlib scipy numpy
 
 
-(Use the correct CuPy build for your CUDA version.)
+(Use the CuPy build matching your CUDA version.)
 
-🧮 Performance
+⚡ Performance Notes
 
-1 million paths × 252 steps computed entirely on GPU in ≈ 1.13 s
+1 M paths × 252 steps completed in ≈ 1.13 s on GPU
 
-Equivalent CPU (NumPy) version typically > 30 s
+Typical NumPy CPU runtime ≈ 30 s for same load
 
-Linear scalability with batch simulation for 10 M+ paths
+Easily scales via batch simulation for 10 M + paths
 
 ✍️ Author
 
