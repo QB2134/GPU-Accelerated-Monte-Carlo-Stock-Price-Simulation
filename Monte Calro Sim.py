@@ -88,3 +88,6 @@ plt.xlabel('Price at T')
 plt.ylabel('Density')
 plt.legend()
 plt.show()
+
+
+
