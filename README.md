@@ -13,126 +13,16 @@ GPU Runtime	≈ 1.13 seconds
 
 The stock price evolves as
 
-𝑆
-𝑡
-+
-Δ
-𝑡
-=
-𝑆
-𝑡
- 
-𝑒
-(
-𝑟
-−
-1
-2
-𝜎
-2
-)
-Δ
-𝑡
-+
-𝜎
-Δ
-𝑡
- 
-𝑍
-𝑡
-,
-𝑍
-𝑡
-∼
-𝑁
-(
-0
-,
-1
-)
-S
-t+Δt
-	​
-
-=S
-t
-	​
-
-e
-(r−
-2
-1
-	​
-
-σ
-2
-)Δt+σ
-Δt
-	​
-
-Z
-t
-	​
-
-,Z
-t
-	​
-
-∼N(0,1)
+St+Δt​=St​e(r−21​σ2)Δt+σΔt
+​Zt​,Zt​∼N(0,1)
 
 under the risk-neutral measure where 
 𝑟
 r replaces the expected return μ.
 The call-option payoff is
 
-max
-⁡
-(
-𝑆
-𝑇
-−
-𝐾
-,
-0
-)
-,
-𝐶
-0
-=
-𝑒
-−
-𝑟
-𝑇
- 
-𝐸
-[
-max
-⁡
-(
-𝑆
-𝑇
-−
-𝐾
-,
-0
-)
-]
-.
-max(S
-T
-	​
+max(ST​−K,0), C0​=e−rTE[max(ST​−K,0)].
 
-−K,0),C
-0
-	​
-
-=e
-−rT
-E[max(S
-T
-	​
-
-−K,0)].
 
 Parameters used in this experiment:
 
